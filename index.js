@@ -1,29 +1,39 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const Note = require('./models/note');
 const cors = require('cors');
+
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static('build'));
 
 
-let notes = [
-  {
-    id: 1,
-    content: "HTML is easy",
-    important: true
-  },
-  {
-    id: 2,
-    content: "Browser can execute only JavaScript",
-    important: false
-  },
-  {
-    id: 3,
-    content: "GET and POST are the most important methods of HTTP protocol",
-    important: true
-  }
-]
+// let notes = [
+//   {
+//     id: 1,
+//     content: "HTML is easy",
+//     important: true
+//   },
+//   {
+//     id: 2,
+//     content: "Browser can execute only JavaScript",
+//     important: false
+//   },
+//   {
+//     id: 3,
+//     content: "GET and POST are the most important methods of HTTP protocol",
+//     important: true
+//   }
+// ]
+
+const fetchNotes = async (request, response) => {
+  const allNotes = await Note.find({});
+  response.json(allNotes);
+};
+
+
 
 const generateId = () => {
   const id = Math.round(Math.random() * 1000)
@@ -42,7 +52,7 @@ app.get('/', (request, response) => {
 
 // fetch all notes
 app.get('/api/notes', (request, response) => {
-  response.json(notes);
+  fetchNotes(request, response);
 })
 
 // fetch single note
