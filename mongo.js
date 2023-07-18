@@ -7,7 +7,7 @@ if (process.argv.length <3) {
 
 const password = process.argv[2];
 
-const url = `mongodb+srv://fdurham:${password}@cluster0.7uvkesk.mongodb.net/noteApp?retryWrites=true&w=majority`
+const url = `mongodb+srv://fdurham:${password}@cluster0.7uvkesk.mongodb.net/noteApp?retryWrites=true&w=majority`;
 
 mongoose.set('strictQuery', false);
 mongoose.connect(url);
@@ -28,7 +28,7 @@ const findNote = async () => {
   const notes = await Note.find({});
   notes.forEach(note => {
     console.log(note);
-  })
+  });
   mongoose.connection.close();
 };
 
