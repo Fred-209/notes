@@ -7,7 +7,7 @@ if (process.argv.length <3) {
 
 const password = process.argv[2];
 
-const url = `mongodb+srv://fdurham:${password}@cluster0.7uvkesk.mongodb.net/noteApp?retryWrites=true&w=majority`;
+const url = `mongodb+srv://fdurham:${password}@cluster0.7uvkesk.mongodb.net/testNoteApp?retryWrites=true&w=majority`;
 
 mongoose.set('strictQuery', false);
 mongoose.connect(url);
@@ -19,10 +19,10 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model('Note', noteSchema);
 
-// const note = new Note({
-//   content: 'How many notes should I make here?!',
-//   important: false,
-// });
+const note = new Note({
+  content: 'Second test note of test database collection',
+  important: false,
+});
 
 const findNote = async () => {
   const notes = await Note.find({});
@@ -32,17 +32,17 @@ const findNote = async () => {
   mongoose.connection.close();
 };
 
-findNote();
+// findNote();
 
 
-// const saveNote = async () => {
-//   try {
-//     await note.save();
-//     console.log('note saved');
-//     mongoose.connection.close();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+const saveNote = async () => {
+  try {
+    await note.save();
+    console.log('note saved');
+    mongoose.connection.close();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// saveNote();
+saveNote();
