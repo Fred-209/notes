@@ -1,8 +1,8 @@
 POST http://localhost:3001/api/notes
 Content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyZWQiLCJpZCI6IjY0Yjk0ZmU1NjFmZWVmYjRjYTY5YzIxMyIsImlhdCI6MTY4OTg2Nzc4M30.diRkQLWjFU2sbrDrQEXNJ_y4aZkhPBVwEUQAgv4XSJs
 
 {
-  "content": "A second note with a user",
-  "important": true,
-  "userId": "64b8d927922e21764e935884"
+  "content": "A New note with authentication enabled",
+  "important": true
 }
